@@ -18,7 +18,7 @@ import java.util.List;
  * GudLib
  */
 public class SplashAdder {
-    private static List<String> splashes = new ArrayList<>();
+    private static final List<String> splashes = new ArrayList<>();
 
     @SubscribeEvent
     public void onSplashesLoaded(SplashesLoadedEvent event){

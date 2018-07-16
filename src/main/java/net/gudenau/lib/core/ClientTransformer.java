@@ -2,20 +2,28 @@ package net.gudenau.lib.core;
 
 import net.gudenau.lib.api.core.ObfuscationHelper;
 import net.minecraft.launchwrapper.IClassTransformer;
-import org.objectweb.asm.tree.*;
-import org.objectweb.asm.*;
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.tree.AbstractInsnNode;
+import org.objectweb.asm.tree.ClassNode;
+import org.objectweb.asm.tree.FrameNode;
+import org.objectweb.asm.tree.InsnList;
+import org.objectweb.asm.tree.JumpInsnNode;
+import org.objectweb.asm.tree.MethodInsnNode;
+import org.objectweb.asm.tree.MethodNode;
+import org.objectweb.asm.tree.VarInsnNode;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-import static org.objectweb.asm.Opcodes.*;
+import static org.objectweb.asm.Opcodes.ALOAD;
+import static org.objectweb.asm.Opcodes.F_APPEND;
+import static org.objectweb.asm.Opcodes.IF_ACMPEQ;
+import static org.objectweb.asm.Opcodes.INVOKESTATIC;
 
 /**
  * Created by gudenau on 12/26/2016.
  * <p>
  * lib
  */
+@SuppressWarnings("unused")
 public class ClientTransformer implements IClassTransformer {
     private static final String obfuscatedTileEntityItemStackRenderer;
     private static final String obfuscatedRenderByItemName;
@@ -111,6 +119,7 @@ public class ClientTransformer implements IClassTransformer {
                 }
 
                 if(endNode == null){
+                    //noinspection RedundantStringFormatCall
                     System.err.printf("Unable to transform TileEntityItemStackRenderer, endNode is null!\n");
                     return null;
                 }
@@ -127,6 +136,7 @@ public class ClientTransformer implements IClassTransformer {
                 }
 
                 if(startNode == null){
+                    //noinspection RedundantStringFormatCall
                     System.err.printf("Unable to transform TileEntityItemStackRenderer, startNode is null!\n");
                     return null;
                 }

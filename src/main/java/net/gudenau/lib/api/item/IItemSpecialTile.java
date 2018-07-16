@@ -14,5 +14,5 @@ public interface IItemSpecialTile {
     default void preItemTileRender(ItemStack stack){}
 
     @SideOnly(Side.CLIENT)
-    default void postItemTileRender(ItemStack stack){};
+    default void postItemTileRender(ItemStack stack){}
 }

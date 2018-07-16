@@ -10,7 +10,7 @@ import java.util.Map;
  * lib
  */
 @IFMLLoadingPlugin.Name("GudLib")
-@IFMLLoadingPlugin.MCVersion("1.11.2")
+@IFMLLoadingPlugin.MCVersion("1.12.2")
 @IFMLLoadingPlugin.TransformerExclusions("net.gudenau.lib.core.")
 public class Plugin implements IFMLLoadingPlugin {
     @Override

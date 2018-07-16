@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.lang.reflect.Constructor;
@@ -16,7 +17,10 @@ import java.lang.reflect.Constructor;
  * GudLib
  *
  * @since 1.2.0.0
+ *
+ * @deprecated Forge changed the registry system, again.
  */
+@Deprecated
 public class RegistryHelper {
     public static ItemBlock register(Block block, ResourceLocation name){
         return register(block, null, ItemBlock.class, null, name);
@@ -52,10 +56,11 @@ public class RegistryHelper {
                 block.setCreativeTab(creativeTabs);
             }
             block.setUnlocalizedName(name.getResourcePath());
-            GameRegistry.register(block, name);
+            block.setRegistryName(name);
+            ForgeRegistries.BLOCKS.register(block);
 
             if(tileClass != null){
-                GameRegistry.registerTileEntity(tileClass, name.getResourceDomain() + "_" + name.getResourcePath());
+                GameRegistry.registerTileEntity(tileClass, name);
             }
 
             return item;
@@ -69,7 +74,8 @@ public class RegistryHelper {
             item.setCreativeTab(creativeTab);
         }
         item.setUnlocalizedName(name.getResourcePath());
-        GameRegistry.register(item, name);
+        item.setRegistryName(name);
+        ForgeRegistries.ITEMS.register(item);
         return item;
     }
 

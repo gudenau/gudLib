@@ -2,7 +2,6 @@ package net.gudenau.lib.api.client.event;
 
 import net.minecraftforge.fml.common.eventhandler.Event;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;

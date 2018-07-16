@@ -13,9 +13,9 @@ import java.util.Map;
  * GudLib
  */
 public final class ObfuscationHelper {
-    private static Map<String, String> classNameCache = new HashMap<>();
-    private static Map<String, String> methodNameCache = new HashMap<>();
-    private static Map<String, String> methodDescriptionCache = new HashMap<>();
+    private static final Map<String, String> classNameCache = new HashMap<>();
+    private static final Map<String, String> methodNameCache = new HashMap<>();
+    private static final Map<String, String> methodDescriptionCache = new HashMap<>();
 
     @Nonnull
     public static String getObfuscatedClassName(@Nonnull String className) {
@@ -94,11 +94,7 @@ public final class ObfuscationHelper {
             return methodDescriptionCache.get(methodDescription);
         }
         cacheMethod(methodName, methodDescription);
-        if(methodDescriptionCache.containsKey(methodDescription)) {
-            return methodDescriptionCache.get(methodDescription);
-        }else{
-            return methodDescription;
-        }
+        return methodDescriptionCache.getOrDefault(methodDescription, methodDescription);
     }
 
     @Nonnull
